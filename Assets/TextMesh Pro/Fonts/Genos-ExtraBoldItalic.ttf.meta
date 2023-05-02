@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 12f59df684f72524dac0f6347101c946
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Genos
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 11a390aa6db69e0489c19a7cc58df306, type: 3}
+  - {fileID: 12800000, guid: 8016f0203ad3c3f4da8f189d8c693266, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
