@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public bool gameOver = false;
     public bool paused = false;
+    public bool isInvincible = false;
 
     Animator playerAnim;
 
@@ -100,24 +101,38 @@ public class GameManager : MonoBehaviour
     // When the player gets hit by an enemy or overlooks one and loses lives
     public void livesUpdate(int lifeLost)
     {
-        if(!gameOver)
+        if(!isInvincible) 
         {
-            livesLeft += lifeLost;
-            lives[lifeToTake].color = new Color32(78, 89, 99, 100);
-            lifeToTake--;
+            if (!gameOver)
+            {
+                livesLeft += lifeLost;
+                lives[lifeToTake].color = new Color32(78, 89, 99, 100);
+                lifeToTake--;
+            }
+
+            if (livesLeft == 0)
+            {
+                gameOver = true;
+
+                playerAnim.SetBool("Dead", true);
+
+                gameOverScreen.gameObject.SetActive(true);
+
+                finalScore.text = "Your Score is: " + score;
+
+                restartButton.onClick.AddListener(ReloadGame);
+            }
         }
+    }
 
-        if(livesLeft == 0)
+    // to add life point
+    public void AddLife()
+    {
+        if(livesLeft < 3)
         {
-            gameOver = true;
-
-            playerAnim.SetBool("Dead", true);
-
-            gameOverScreen.gameObject.SetActive(true);
-
-            finalScore.text = "Your Score is: " + score;
-
-            restartButton.onClick.AddListener(ReloadGame);
+            livesLeft++;
+            lifeToTake++;
+            lives[lifeToTake].color = new Color32(0, 5, 255, 255);
         }
     }
 

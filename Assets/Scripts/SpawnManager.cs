@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
     float zSpawnFar = 2.0f;
     float zSpawnNear = -11.0f;
     float ySpawnPos = 0f;
-    float repeatEnemy = 0.8f;
+    [SerializeField] float repeatEnemy = 0.8f;
     float repeatPowerup = 10.0f;
 
     // Start is called before the first frame update

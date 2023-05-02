@@ -1151,6 +1151,7 @@ MonoBehaviour:
   livesLeft: 0
   gameOver: 0
   paused: 0
+  isInvincible: 0
 --- !u!4 &366812355
 Transform:
   m_ObjectHideFlags: 0

@@ -38,10 +38,7 @@ public class Enemy : MonoBehaviour
     // Interactions between enemy and other objects
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Powerup"))
-        {
-            Destroy(collision.gameObject);
-        } else if (collision.gameObject.CompareTag("Projectile"))
+        if (collision.gameObject.CompareTag("Projectile"))
         {
             spawnManager.enemyPool.Release(this);
 

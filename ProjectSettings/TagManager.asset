@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Powerup
   - Enemy
+  - AmmoPowerup
+  - HealthPowerup
   - Projectile
+  - InvinciblePowerup
   layers:
   - Default
   - TransparentFX

@@ -119,14 +119,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Destroys powerup when picked up
+    //Powerup effects when picked up
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Powerup"))
+        // Ammo powerup
+        if (other.gameObject.CompareTag("AmmoPowerup"))
         {
             Destroy(other.gameObject);
             StartCoroutine(PowerupTime());
+            playerAudio.PlayOneShot(powerupPickup, 1);
+        }
+        // Health powerup
+        else if(other.gameObject.CompareTag("HealthPowerup"))
+        {
+            gameManager.AddLife();
+            Destroy(other.gameObject);
+            playerAudio.PlayOneShot(powerupPickup, 1);
+        }
+        // Time powerup
+        else if (other.gameObject.CompareTag("InvinciblePowerup"))
+        {
+            Destroy(other.gameObject);
+            StartCoroutine(InvincibleTime());
             playerAudio.PlayOneShot(powerupPickup, 1);
         }
     }
@@ -146,5 +161,12 @@ public class PlayerController : MonoBehaviour
         poweredUp = true;
         yield return new WaitForSeconds(powerupTime);
         poweredUp = false;
+    }
+
+    IEnumerator InvincibleTime()
+    {
+        gameManager.isInvincible = true;
+        yield return new WaitForSeconds(powerupTime);
+        gameManager.isInvincible = false;
     }
 }
