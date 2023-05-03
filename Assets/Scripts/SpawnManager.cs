@@ -5,12 +5,16 @@ using UnityEngine.Pool;
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager spawnManagerInstance;
+
     public Enemy[] enemies;
+    public PowerUp[] powerups;
     public GameObject powerup;
     public Projectile projectile;
 
     public ObjectPool<Enemy> enemyPool;
     public ObjectPool<Projectile> projectilePool;
+    public ObjectPool<PowerUp> powerupPool;
 
     public ParticleSystem explosionParticles;
 
@@ -26,7 +30,21 @@ public class SpawnManager : MonoBehaviour
     float zSpawnNear = -11.0f;
     float ySpawnPos = 0f;
     [SerializeField] float repeatEnemy = 0.8f;
-    float repeatPowerup = 10.0f;
+    public float repeatPowerup = 5.0f;
+
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (spawnManagerInstance != null && spawnManagerInstance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            spawnManagerInstance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +56,7 @@ public class SpawnManager : MonoBehaviour
 
         enemyPool = new ObjectPool<Enemy>(CreateAnEnemy, GetEnemy, RemoveEnemy, DestroyEnemy, true, 20, 30);
         projectilePool = new ObjectPool<Projectile>(CreateProjectile, GetProjectile, RemoveProjectile, DestroyProjectile, true, 20, 30);
+        powerupPool = new ObjectPool<PowerUp>(CreatePowerup, GetPowerup, RemovePowerup, DestroyPowerup, true, 10, 20);
     }
 
     //Functions for the enemy pool
@@ -96,13 +115,31 @@ public class SpawnManager : MonoBehaviour
         Destroy(projectile.gameObject);
     }
 
-    // For spwning powerup
-    void SpawnPowerup()
+    // Functions for powerup pool
+
+    PowerUp CreatePowerup()
     {
-        int randomIndex = Random.Range(0, enemies.Length);
+        int randomIndex = Random.Range(0, powerups.Length);
+        return Instantiate(powerups[randomIndex]);
+    }
+
+    void GetPowerup(PowerUp powerup)
+    {
         float zSpawnPos = Random.Range(zSpawnFar, zSpawnNear);
         Vector3 spawnPosPowerup = new Vector3(xSpawnPos, ySpawnPos, zSpawnPos);
-        Instantiate(powerup, spawnPosPowerup, powerup.transform.rotation);
+        powerup.transform.position = spawnPosPowerup;
+
+        powerup.gameObject.SetActive(true);
+    }
+
+    public void RemovePowerup(PowerUp powerup)
+    {
+        powerup.gameObject.SetActive(false);
+    }
+
+    void DestroyPowerup(PowerUp powerup)
+    {
+        Destroy(powerup.gameObject);
     }
 
     // Timer for enemies to spawn
@@ -121,7 +158,7 @@ public class SpawnManager : MonoBehaviour
         while (!gameManager.gameOver)
         {
             yield return new WaitForSeconds(repeatPowerup);
-            SpawnPowerup();
+            powerupPool.Get();
 
         }
     }

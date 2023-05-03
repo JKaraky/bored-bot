@@ -2028,6 +2028,10 @@ MonoBehaviour:
   - {fileID: -5261796539896475534, guid: 92c55f207de0a3543b3e47b2dfa487f7, type: 3}
   - {fileID: 6182946580516191820, guid: 57396838ba120674eba74a6b39cac74e, type: 3}
   - {fileID: -1417392120350776282, guid: efe836e4dafed3d47800e2843241dcf3, type: 3}
+  powerups:
+  - {fileID: 7164928578167168062, guid: 5996994b75b002c48a2438a1d5000645, type: 3}
+  - {fileID: 7164928578167168062, guid: 469f0fb1e0ac27b42bdf41a6c24693df, type: 3}
+  - {fileID: 7164928578167168062, guid: 8f85d865c1ebc574f9af50d23d7c3e9e, type: 3}
   powerup: {fileID: 3267958054914333698, guid: 5996994b75b002c48a2438a1d5000645, type: 3}
   projectile: {fileID: 5216633072802872357, guid: 5745e3dbb02c9064394f800736607903, type: 3}
   explosionParticles: {fileID: 19814690, guid: cd4d7020429cde74db076ffa72495419, type: 3}

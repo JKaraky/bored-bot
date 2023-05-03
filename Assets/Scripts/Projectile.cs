@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Powerup"))
+        if (other.gameObject.GetComponent<PowerUp>() != null)
         {
             spawnManager.projectilePool.Release(this);
         }

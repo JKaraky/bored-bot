@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     float zRangeFar = 4.5f;
     float zRangeNear = -12.0f;
     float powerupTime = 2.0f;
+    float invincibleTime = 5.0f;
 
     bool firstShot = false;
     bool canShoot = true;
@@ -126,7 +127,6 @@ public class PlayerController : MonoBehaviour
         // Ammo powerup
         if (other.gameObject.CompareTag("AmmoPowerup"))
         {
-            Destroy(other.gameObject);
             StartCoroutine(PowerupTime());
             playerAudio.PlayOneShot(powerupPickup, 1);
         }
@@ -134,13 +134,11 @@ public class PlayerController : MonoBehaviour
         else if(other.gameObject.CompareTag("HealthPowerup"))
         {
             gameManager.AddLife();
-            Destroy(other.gameObject);
             playerAudio.PlayOneShot(powerupPickup, 1);
         }
         // Time powerup
         else if (other.gameObject.CompareTag("InvinciblePowerup"))
         {
-            Destroy(other.gameObject);
             StartCoroutine(InvincibleTime());
             playerAudio.PlayOneShot(powerupPickup, 1);
         }
@@ -166,7 +164,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator InvincibleTime()
     {
         gameManager.isInvincible = true;
-        yield return new WaitForSeconds(powerupTime);
+        yield return new WaitForSeconds(invincibleTime);
         gameManager.isInvincible = false;
     }
 }

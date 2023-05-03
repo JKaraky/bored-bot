@@ -20,7 +20,15 @@ public class PowerUp : MonoBehaviour
 
         if (transform.position.x < xRange || transform.position.y < yRange)
         {
-            Destroy(gameObject);
+            SpawnManager.spawnManagerInstance.powerupPool.Release(this);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            SpawnManager.spawnManagerInstance.powerupPool.Release(this);
         }
     }
 }
