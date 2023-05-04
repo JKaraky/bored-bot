@@ -7,21 +7,30 @@ public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager spawnManagerInstance;
 
+    [SerializeField]
+    [Header ("Enemies")]
     public Enemy[] enemies;
+    public ObjectPool<Enemy> enemyPool;
+    public float repeatEnemy = 0.8f;
+
+    [SerializeField]
+    [Header("Power ups")]
     public PowerUp[] powerups;
     public GameObject powerup;
-    public Projectile projectile;
-
-    public ObjectPool<Enemy> enemyPool;
-    public ObjectPool<Projectile> projectilePool;
     public ObjectPool<PowerUp> powerupPool;
+    public float repeatPowerup = 5.0f;
+
+    [SerializeField]
+    [Header("Projectiles")]
+    public Projectile projectile;
+    public ObjectPool<Projectile> projectilePool;
 
     public ParticleSystem explosionParticles;
 
     public AudioClip enemyDeath;
 
     GameManager gameManager;
-    PlayerController player;
+    public GameObject player;
 
     AudioSource audioSource;
 
@@ -29,8 +38,6 @@ public class SpawnManager : MonoBehaviour
     float zSpawnFar = 2.0f;
     float zSpawnNear = -11.0f;
     float ySpawnPos = 0f;
-    [SerializeField] float repeatEnemy = 0.8f;
-    public float repeatPowerup = 5.0f;
 
     private void Awake()
     {
@@ -49,8 +56,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        gameManager = GameManager.gameManagerInstance;
 
         audioSource = GetComponent<AudioSource>();
 

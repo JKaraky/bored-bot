@@ -13,7 +13,7 @@ public class RepeatWall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager = GameManager.gameManagerInstance;
 
         // We get starting position
 

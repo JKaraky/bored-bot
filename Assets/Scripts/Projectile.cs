@@ -13,8 +13,8 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
+        gameManager = GameManager.gameManagerInstance;
+        spawnManager = SpawnManager.spawnManagerInstance;
     }
 
     // Update is called once per frame

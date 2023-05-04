@@ -7,6 +7,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager gameManagerInstance;
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI finalScore;
 
@@ -19,7 +21,12 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject pauseScreen;
 
+    [SerializeField]
+    [Header ("Buttons")]
     public Button restartButton;
+    public Button startButton;
+    public Button aboutButton;
+    public Button backButton;
 
     public float score;
 
@@ -29,29 +36,33 @@ public class GameManager : MonoBehaviour
     public bool paused = false;
     public bool isInvincible = false;
 
-    Animator playerAnim;
+    public Animator playerAnim;
 
     SpawnManager spawnManager;
 
-    Button startButton;
-    Button aboutButton;
-    Button backButton;
 
     int lifeToTake;
     Color32 takenLifeColor = new Color32(78, 89, 99, 100);
     Color32 lifeColor = new Color32(0, 5, 255, 255);
     Color32 invincibleLifeColor = new Color32(164, 164, 164, 255);
 
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (gameManagerInstance != null && gameManagerInstance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            gameManagerInstance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        playerAnim = GameObject.Find("Player").GetComponent<Animator>();
-        spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
-        startButton = GameObject.Find("Start").GetComponent<Button>();
-        aboutButton = GameObject.Find("About").GetComponent<Button>();
-
-        startButton.onClick.AddListener(StartOpening);
-        aboutButton.onClick.AddListener(AboutText);
+        spawnManager = SpawnManager.spawnManagerInstance;
     }
 
     // Update is called once per frame
@@ -69,7 +80,7 @@ public class GameManager : MonoBehaviour
     }
 
     // When you click start
-    void StartOpening()
+    public void StartOpening()
     {
         gameOver = false;
 
@@ -84,18 +95,14 @@ public class GameManager : MonoBehaviour
     }
 
     // When you enter about menu
-    void AboutText()
+    public void AboutText()
     {
         buttons.gameObject.SetActive(false);
         aboutSection.gameObject.SetActive(true);
-
-        backButton = GameObject.Find("Back Button").GetComponent<Button>();
-
-        backButton.onClick.AddListener(BackToMenu);
     }
 
     // When you click back button
-    void BackToMenu()
+    public void BackToMenu()
     {
         buttons.gameObject.SetActive(true);
         aboutSection.gameObject.SetActive(false);
@@ -122,8 +129,6 @@ public class GameManager : MonoBehaviour
                 gameOverScreen.gameObject.SetActive(true);
 
                 finalScore.text = "Your Score is: " + score;
-
-                restartButton.onClick.AddListener(ReloadGame);
             }
         }
     }
