@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.450872, g: 0.50077784, b: 0.5745998, a: 1}
+  m_IndirectSpecularColor: {r: 0.45087188, g: 0.5007774, b: 0.5745991, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -185,10 +185,10 @@ MonoBehaviour:
 
     Down Arrow / S: Go down
 
-    Space: Shoot
+    Space: Shoot (but
+    not your friends)
 
-    P:
-    Pause'
+    P: Pause'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28f512b0cece67d42af28f2a3bcdc73f, type: 2}
   m_sharedMaterial: {fileID: 6569206078075479064, guid: 28f512b0cece67d42af28f2a3bcdc73f, type: 2}
@@ -522,6 +522,7 @@ MonoBehaviour:
   shootingSound: {fileID: 8300000, guid: 132f502e03330844293c60b2ea839b8b, type: 3}
   powerupPickup: {fileID: 8300000, guid: 22c28920f9abb5442a566b9b6d077e18, type: 3}
   enemyHit: {fileID: 8300000, guid: a3ff8a98bf8e5ab4fa7f8b085fb35dd4, type: 3}
+  speed: 5
 --- !u!54 &33820263
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1593,11 +1594,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Bored Bot is my first ever Unity project. It is a humble game about a
-    little bot who is bored at work and imagines himself killing golems to pass the
-    time. It marks one month of me learning how to code games.
+  m_text: 'Bored Bot is a humble game about a little bot who is bored at work and
+    imagines himself killing golems to pass the time.
 
-    I hope you enjoy.'
+    We hope you enjoy.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28f512b0cece67d42af28f2a3bcdc73f, type: 2}
   m_sharedMaterial: {fileID: 6569206078075479064, guid: 28f512b0cece67d42af28f2a3bcdc73f, type: 2}
@@ -2049,13 +2049,13 @@ MonoBehaviour:
   - {fileID: -5261796539896475534, guid: 92c55f207de0a3543b3e47b2dfa487f7, type: 3}
   - {fileID: 6182946580516191820, guid: 57396838ba120674eba74a6b39cac74e, type: 3}
   - {fileID: -1417392120350776282, guid: efe836e4dafed3d47800e2843241dcf3, type: 3}
-  repeatEnemy: 1
+  repeatEnemy: 0.5
   powerups:
   - {fileID: 7164928578167168062, guid: 5996994b75b002c48a2438a1d5000645, type: 3}
   - {fileID: 7164928578167168062, guid: 469f0fb1e0ac27b42bdf41a6c24693df, type: 3}
   - {fileID: 7164928578167168062, guid: 8f85d865c1ebc574f9af50d23d7c3e9e, type: 3}
   powerup: {fileID: 3267958054914333698, guid: 5996994b75b002c48a2438a1d5000645, type: 3}
-  repeatPowerup: 1
+  repeatPowerup: 4
   projectile: {fileID: 5216633072802872357, guid: 5745e3dbb02c9064394f800736607903, type: 3}
   explosionParticles: {fileID: 198656289721292014, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
   enemyDeath: {fileID: 8300000, guid: 662f8b0fe7f39d341a63968054ccc95d, type: 3}

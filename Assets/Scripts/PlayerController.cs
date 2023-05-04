@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     GameManager gameManager;
     SpawnManager spawnManager;
 
-    float speed = 5.0f;
+    public float speed = 5.0f;
     float zRangeFar = 4.5f;
     float zRangeNear = -12.0f;
     float powerupTime = 2.0f;
@@ -38,11 +38,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
+        if(!gameManager.gameOver)
+        {
+            MovePlayer();
 
-        ContraintPlayerMovement();
+            ContraintPlayerMovement();
 
-        Shoot();
+            Shoot();
+        }
     }
 
     // To move the player
