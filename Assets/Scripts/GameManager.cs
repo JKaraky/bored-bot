@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
     Button backButton;
 
     int lifeToTake;
+    Color32 takenLifeColor = new Color32(78, 89, 99, 100);
+    Color32 lifeColor = new Color32(0, 5, 255, 255);
+    Color32 invincibleLifeColor = new Color32(164, 164, 164, 255);
 
     // Start is called before the first frame update
     void Start()
@@ -106,7 +109,7 @@ public class GameManager : MonoBehaviour
             if (!gameOver)
             {
                 livesLeft += lifeLost;
-                lives[lifeToTake].color = new Color32(78, 89, 99, 100);
+                lives[lifeToTake].color = takenLifeColor;
                 lifeToTake--;
             }
 
@@ -132,7 +135,30 @@ public class GameManager : MonoBehaviour
         {
             livesLeft++;
             lifeToTake++;
-            lives[lifeToTake].color = new Color32(0, 5, 255, 255);
+            lives[lifeToTake].color = isInvincible ? invincibleLifeColor : lifeColor;
+        }
+    }
+
+    // Change color of health when invincible
+    public IEnumerator InvisibilityOnOff(float invTime)
+    {
+        isInvincible = true;
+        // Change color to Invincible color
+        foreach (var l in lives)
+        {
+            if (l.color == lifeColor)
+            {
+                l.color = invincibleLifeColor;
+            }
+        }
+        yield return new WaitForSeconds(invTime);
+        isInvincible = false;
+        foreach (var l in lives)
+        {
+            if (l.color == invincibleLifeColor)
+            {
+                l.color = lifeColor;
+            }
         }
     }
 

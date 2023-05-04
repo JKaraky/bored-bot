@@ -139,7 +139,8 @@ public class PlayerController : MonoBehaviour
         // Time powerup
         else if (other.gameObject.CompareTag("InvinciblePowerup"))
         {
-            StartCoroutine(InvincibleTime());
+            //StartCoroutine(InvincibleTime());
+            StartCoroutine(gameManager.InvisibilityOnOff(invincibleTime));
             playerAudio.PlayOneShot(powerupPickup, 1);
         }
     }
@@ -161,10 +162,12 @@ public class PlayerController : MonoBehaviour
         poweredUp = false;
     }
 
-    IEnumerator InvincibleTime()
+    /*IEnumerator InvincibleTime()
     {
         gameManager.isInvincible = true;
+        gameManager.InvisibilityOnOff();
         yield return new WaitForSeconds(invincibleTime);
         gameManager.isInvincible = false;
-    }
+        gameManager.InvisibilityOnOff();
+    }*/
 }
