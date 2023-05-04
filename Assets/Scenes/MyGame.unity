@@ -666,6 +666,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &33820268 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: bff429107601444d59c67940e6ad78c4, type: 3}
+  m_PrefabInstance: {fileID: 33820260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &157007976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,11 +1164,15 @@ MonoBehaviour:
   gameOverScreen: {fileID: 662251417}
   pauseScreen: {fileID: 1432071907}
   restartButton: {fileID: 2082228012}
+  startButton: {fileID: 1786239304}
+  aboutButton: {fileID: 275357844}
+  backButton: {fileID: 1987519696}
   score: 0
   livesLeft: 0
   gameOver: 0
   paused: 0
   isInvincible: 0
+  playerAnim: {fileID: 33820268}
 --- !u!4 &366812355
 Transform:
   m_ObjectHideFlags: 0
@@ -3907,7 +3916,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1987519697}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 366812354}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BackToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1987519697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4129,13 +4150,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 6064327b2ad28794391ddec4d5e1d216, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 366812354}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ReloadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
